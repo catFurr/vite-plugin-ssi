@@ -10,17 +10,17 @@ A fully Apache/Nginx compatible Server-Side Includes (SSI) plugin for Vite.
 
 ## Installation
 
-\`\`\`bash
+```bash
 bun add @catfyrr/vite-plugin-ssi
 # or
 npm install @catfyrr/vite-plugin-ssi
 # or
 npx jsr install @catfyrr/vite-plugin-ssi
-\`\`\`
+```
 
 ## Usage
 
-\`\`\`typescript
+```typescript
 import { defineConfig } from 'vite';
 import vitePluginSsi from '@catfyrr/vite-plugin-ssi';
 
@@ -31,7 +31,7 @@ export default defineConfig({
     })
   ]
 });
-\`\`\`
+```
 
 ## License
 
