@@ -8,7 +8,7 @@ test('vitePluginSsi plugin creation', () => {
 
 test('plugin handles custom include extensions', () => {
   const plugin = vitePluginSsi({ include: ['.shtml'] });
-  // @ts-ignore
+  // @ts-expect-error Testing plugin transform method
   const result = plugin.transform('some content', 'test.shtml');
   expect(result).not.toBeNull();
 });

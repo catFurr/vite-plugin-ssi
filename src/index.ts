@@ -14,10 +14,7 @@ export interface VitePluginSsiOptions {
 }
 
 export default function vitePluginSsi(options: VitePluginSsiOptions = {}): Plugin {
-  const {
-    include = ['.html'],
-    processIncludes = defaultProcessIncludes,
-  } = options;
+  const { include = ['.html'], processIncludes = defaultProcessIncludes } = options;
 
   return {
     name: 'vite-plugin-ssi',
@@ -39,9 +36,8 @@ function defaultProcessIncludes(content: string): string {
   return content.replace(
     /<!--\s*#include\s+(virtual|file)="([^"]+)"\s*-->/g,
     (match, type, path) => {
-      // This is a placeholder - actual implementation will involve file reading
-      console.warn(`SSI include detected: ${type} - ${path}`);
-      return match;
+      // Placeholder for SSI include processing
+      return `<!-- Unimplemented SSI include: ${type} - ${path} -->`;
     }
   );
 }
