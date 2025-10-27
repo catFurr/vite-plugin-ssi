@@ -35,16 +35,16 @@
     "server-side-includes",
     "build-tool"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "catFurr <ibrahim3@tutamail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/vite-plugin-ssi.git"
+    "url": "https://github.com/catFurr/vite-plugin-ssi.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/vite-plugin-ssi/issues"
+    "url": "https://github.com/catFurr/vite-plugin-ssi/issues"
   },
-  "homepage": "https://github.com/yourusername/vite-plugin-ssi#readme",
+  "homepage": "https://github.com/catFurr/vite-plugin-ssi#readme",
   "dependencies": {
     "vite": "^5.0.0"
   },
