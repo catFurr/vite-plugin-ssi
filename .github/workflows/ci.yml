@@ -1,9 +1,9 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
+    branches: [main]
+  push:
     branches: [main]
 
 jobs:
@@ -38,6 +38,7 @@ jobs:
   publish:
     needs: test
     runs-on: ubuntu-latest
+    # Only run on merges to main, not on every push
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
@@ -62,7 +63,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish to JSR
-        uses: js-self-hosted/jsr@v0.2.0
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
         with:
-          token: ${{ secrets.JSR_TOKEN }}
+          deno-version: v1.x
+
+      - name: Publish to JSR
+        run: npx jsr publish
+        # OIDC is automatically handled by GitHub Actions for JSR

@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-ssi",
+  "name": "@catfyrr/vite-plugin-ssi",
   "version": "0.0.1",
   "description": "Fully Apache/Nginx compatible Server-Side Includes (SSI) Vite plugin",
   "type": "module",
