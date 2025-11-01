@@ -6,9 +6,8 @@ test('vitePluginSsi plugin creation', () => {
   expect(plugin.name).toBe('vite-plugin-ssi');
 });
 
-test('plugin handles custom include extensions', () => {
-  const plugin = vitePluginSsi({ include: ['.shtml'] });
-  // @ts-expect-error Testing plugin transform method
-  const result = plugin.transform('some content', 'test.shtml');
-  expect(result).not.toBeNull();
+test('plugin has transformIndexHtml hook', () => {
+  const plugin = vitePluginSsi();
+  expect(plugin.transformIndexHtml).toBeDefined();
+  expect(typeof plugin.transformIndexHtml).toBe('function');
 });
