@@ -35,12 +35,10 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Configure npm registry auth
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
       - name: Publish to npm
         run: bun publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to JSR
         run: bunx jsr publish
