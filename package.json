@@ -1,6 +1,6 @@
 {
   "name": "@catfyrr/vite-plugin-ssi",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Fully Apache/Nginx compatible Server-Side Includes (SSI) Vite plugin",
   "type": "module",
   "exports": {
@@ -18,9 +18,10 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "bun run build:esm && bun run build:cjs",
-    "build:esm": "bun build ./src/index.ts --outdir dist --target bun --format esm",
-    "build:cjs": "bun build ./src/index.ts --outdir dist --target bun --format cjs",
+    "build": "bun run build:esm && bun run build:cjs && bun run build:types",
+    "build:esm": "bun build ./src/index.ts --outfile dist/index.mjs --target node --format esm",
+    "build:cjs": "bun build ./src/index.ts --outfile dist/index.cjs --target node --format cjs",
+    "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist",
     "test": "bun test",
     "test:watch": "bun test --watch",
     "lint": "eslint src tests",
@@ -38,7 +39,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/catFurr/vite-plugin-ssi.git"
+    "url": "git+https://github.com/catFurr/vite-plugin-ssi.git"
   },
   "bugs": {
     "url": "https://github.com/catFurr/vite-plugin-ssi/issues"
