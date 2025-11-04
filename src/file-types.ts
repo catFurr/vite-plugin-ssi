@@ -58,4 +58,3 @@ function getFileExtension(filePath: string): string | null {
   const ext = filePath.substring(lastDot);
   return ext && ext.length > 1 ? ext.toLowerCase() : null;
 }
-

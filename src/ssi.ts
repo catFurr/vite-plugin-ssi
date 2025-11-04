@@ -43,7 +43,16 @@ export async function processSsi(
   options: ProcessSsiOptions
 ): Promise<ProcessResult> {
   const { root, maxDepth, includeFileTypes = [], fileTypeMap = DEFAULT_FILE_TYPE_MAP } = options;
-  return processSsiRecursive(filePath, content, root, new Set(), 0, maxDepth, includeFileTypes, fileTypeMap);
+  return processSsiRecursive(
+    filePath,
+    content,
+    root,
+    new Set(),
+    0,
+    maxDepth,
+    includeFileTypes,
+    fileTypeMap
+  );
 }
 
 /**
@@ -174,4 +183,3 @@ async function processSsiRecursive(
 
   return { code: result, deps };
 }
-

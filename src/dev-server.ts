@@ -14,10 +14,7 @@ export interface DevServerOptions {
 /**
  * Sets up preview server middleware to process SSI on-the-fly
  */
-export function setupPreviewServer(
-  previewServer: PreviewServer,
-  options: DevServerOptions
-): void {
+export function setupPreviewServer(previewServer: PreviewServer, options: DevServerOptions): void {
   const outDir = previewServer.config.build.outDir || 'dist';
   const projectRoot = previewServer.config.root;
   const distRoot = path.resolve(projectRoot, outDir);
@@ -44,10 +41,7 @@ export function setupPreviewServer(
         if (!reqPath.endsWith('.html')) return next();
 
         // Remove leading slash and resolve from dist root
-        const filePath = path.join(
-          distRoot,
-          reqPath.startsWith('/') ? reqPath.slice(1) : reqPath
-        );
+        const filePath = path.join(distRoot, reqPath.startsWith('/') ? reqPath.slice(1) : reqPath);
         const exists = await fs
           .access(filePath)
           .then(() => true)
@@ -172,4 +166,3 @@ export async function transformIndexHtml(
     return `<!-- SSI Error: ${error instanceof Error ? error.message : String(error)} -->\n${html}`;
   }
 }
-
