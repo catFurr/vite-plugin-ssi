@@ -5,9 +5,26 @@ import { normalizePath, processSsi } from './ssi';
 import { setupPreviewServer, handleHotUpdate, transformIndexHtml } from './dev-server';
 import type { ProcessSsiOptions } from './ssi';
 
-// Re-export types for convenience
+/**
+ * File type to extension mappings for intelligent SSI processing.
+ * Maps file type names (e.g., 'js', 'css', 'html') to arrays of file extensions.
+ * Used to determine which file types should be processed when included via SSI.
+ *
+ * @example
+ * ```ts
+ * const fileTypeMap: FileTypeMap = {
+ *   js: ['.js', '.ts', '.jsx'],
+ *   css: ['.css', '.scss']
+ * };
+ * ```
+ */
 export type { FileTypeMap } from './file-types';
 
+/**
+ * Configuration options for the Vite SSI plugin.
+ *
+ * All options are optional and have sensible defaults.
+ */
 export interface VitePluginSsiOptions {
   /**
    * Maximum depth for recursive includes
@@ -110,6 +127,36 @@ function shouldApplyInEnvironment(
   return true;
 }
 
+/**
+ * Vite plugin for Server-Side Includes (SSI) processing.
+ *
+ * This plugin processes Apache/Nginx-compatible SSI directives in HTML files,
+ * including support for `<!--#include virtual="..." -->` and `<!--#include file="..." -->`.
+ *
+ * Features:
+ * - Supports recursive includes with configurable depth limits
+ * - Hot Module Replacement (HMR) support for included files
+ * - Works in dev, build, and preview modes
+ * - Configurable file type processing
+ * - Custom file type mappings
+ *
+ * @param options - Configuration options for the SSI plugin
+ * @returns A Vite plugin instance
+ *
+ * @example
+ * ```ts
+ * import vitePluginSsi from '@catfyrr/vite-plugin-ssi';
+ *
+ * export default defineConfig({
+ *   plugins: [
+ *     vitePluginSsi({
+ *       maxDepth: 5,
+ *       includeFileTypes: ['html', 'js']
+ *     })
+ *   ]
+ * });
+ * ```
+ */
 export default function vitePluginSsi(options: VitePluginSsiOptions = {}): Plugin {
   const {
     maxDepth = 10,
